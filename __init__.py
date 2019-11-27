@@ -1,2 +1,2 @@
-from mailer import Mailer
+from .mailer import Mailer
 
