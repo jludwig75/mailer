@@ -1,6 +1,7 @@
 import logging
 import smtplib
 import json
+import os
 
 from email import encoders
 from email.mime.text import MIMEText
