@@ -54,10 +54,11 @@ class Mailer:
 
     def send_mail_with_attached_file(self, to_address, subject, message, file_name):
         try:
-            msg = MIMEMultipart(message)
+            msg = MIMEMultipart()
             msg['From'] = '"%s" <%s>' % (self._sender_name, self._sender_address)
             msg['To'] = to_address
             msg['Subject'] = subject
+            msg.attach(MIMEText(message))
             with open(file_name, 'rb') as fd:
                 img = MIMEBase('video', 'x-matroska')
                 img.set_payload(fd.read())
