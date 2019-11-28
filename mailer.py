@@ -27,14 +27,14 @@ class Mailer:
     def _send_mail(self, to_address, msg):
         logging.info('Sending email from %s to %s' % (self._smtp_account_name, to_address))
         try:
-            logging.info('Connecting to SMTP server')
+            logging.debug('Connecting to SMTP server')
             server = smtplib.SMTP_SSL(self._smpt_server, self._smpt_port)
             server.ehlo()
-            logging.info('Logging into SMTP server as %s' % self._smtp_account_name)
+            logging.debug('Logging into SMTP server as %s' % self._smtp_account_name)
             server.login(self._smtp_account_name, self._smtp_account_password)
-            logging.info('Sending email to %s' % to_address)
+            logging.debug('Sending email to %s' % to_address)
             server.sendmail(self._sender_address, to_address, msg.as_string())    
-            logging.info('Closing connection to SMTP server')
+            logging.debug('Closing connection to SMTP server')
             server.close()
             return True
         except Exception as e:
